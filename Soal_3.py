@@ -1,38 +1,30 @@
-class AntrianRestoran:
+class Queue:
     def _init_(self):
-        self.pesanan = []
+        self.queue = []
 
-    def enqueue(self, pesanan):
-        self.pesanan.append(pesanan)
-        print(f"Pesanan {pesanan} berhasil ditambahkan ke antrian.")
+    def enqueue(self, item):
+        self.queue.append(item)
 
     def dequeue(self):
-        if not self.pesanan:
-            print("Antrian kosong.")
-            return None
-        pesanan_terdepan = self.pesanan.pop(0)
-        print(f"Pesanan {pesanan_terdepan} dilayani.")
-        return pesanan_terdepan
-
-
-if _name_ == "_main_":
-    antrian = AntrianRestoran()
-
-    while True:
-        print("\nMenu:")
-        print("1. Tambah pesanan")
-        print("2. Layani pesanan")
-        print("3. Keluar")
-
-        pilihan = input("Pilih menu: ")
-
-        if pilihan == "1":
-            pesanan = input("Masukkan pesanan: ")
-            antrian.enqueue(pesanan)
-        elif pilihan == "2":
-            antrian.dequeue()
-        elif pilihan == "3":
-            print("Terima kasih!")
-            break
+        if not self.is_empty():
+            return self.queue.pop(0)
         else:
-            print("Pilihan tidak valid.")
+            return None
+
+    def remove_at(self, index):
+        if 0 <= index < len(self.queue):
+            return self.queue.pop(index)
+        else:
+            return None
+
+    def head(self):
+        if not self.is_empty():
+            return self.queue[0]
+        else:
+            return None 
+
+    def display(self):
+        print("Queue:", self.queue)
+
+    def is_empty(self):
+        return len(self.queue) == 0
