@@ -1,51 +1,40 @@
 class Buah:
-    def _init_(self, nama, warna, vitamin, rasa):
+    def _init_(self, nama, warna, rasa):
         self.nama = nama
         self.warna = warna
-        self.vitamin = vitamin
         self.rasa = rasa
-
+        
     def setNama(self, nama):
         self.nama = nama
-
+        
     def setWarna(self, warna):
         self.warna = warna
-
-    def setVitamin(self, vitamin):
-        self.vitamin = vitamin
-
+        
     def setRasa(self, rasa):
         self.rasa = rasa
-
+        
     def information(self):
-        return f"Nama: {self.nama}, Warna: {self.warna}, Vitamin: {self.vitamin}, Rasa: {self.rasa}"
+        return f"Nama: {self.nama}, Warna: {self.warna}, Rasa: {self.rasa}"
 
 class Mangga(Buah):
-    def _init_(self, nama, warna, vitamin, rasa, varietas):
-        super()._init_(nama, warna, vitamin, rasa)
-        self.varietas = varietas
-
-    def setVarietas(self, varietas):
-        self.varietas = varietas
-
-    def getVarietas(self):
-        return self.varietas
-
+    def _init_(self, nama, warna, rasa, vitamin):
+        super()._init_(nama, warna, rasa)
+        self.vitamin = vitamin
+        
+    def setVitamin(self, vitamin):
+        self.vitamin = vitamin
+        
     def information(self):
-        info = super().information()
-        return f"{info}, Varietas: {self.varietas}"
+        parent_info = super().information()
+        return f"{parent_info}, Vitamin: {self.vitamin}"
 
-def main():
-    mangga_harum_manis = Mangga("Mangga Harum Manis", "Hijau", "Vitamin C", "Manis", "Harum Manis")
-    
-    print(f"Nama: {mangga_harum_manis.nama}")
-    print(f"Warna: {mangga_harum_manis.warna}")
-    print(f"Vitamin: {mangga_harum_manis.vitamin}")
-    print(f"Rasa: {mangga_harum_manis.rasa}")
-    print(f"Varietas: {mangga_harum_manis.getVarietas()}")
-    
-    print("\nInformasi lengkap:")
-    print(mangga_harum_manis.information())
+mangga = Mangga("Mangga Harum Manis", "Hijau", "Manis", "Vitamin C")
 
-if _name_ == "_main_":
-    main()
+print(mangga.information())
+
+mangga.setNama("Mangga Indramayu")
+mangga.setWarna("Kuning")
+mangga.setRasa("Manis Asam")
+mangga.setVitamin("Vitamin A dan C")
+
+print(mangga.information())
